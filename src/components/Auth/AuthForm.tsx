@@ -16,6 +16,7 @@ import icon1 from "../../assets/1.svg";
 import icon2 from "../../assets/2.svg";
 import icon3 from "../../assets/3.svg";
 import icon4 from "../../assets/4.svg";
+import { ErrorForm } from "../../types/Error";
 
 interface AuthFormProps {
   type: "login" | "signup";
@@ -37,19 +38,19 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     const newErrors: { [key: string]: string } = {};
 
     if (!formData.email.includes("@")) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = ErrorForm.INVALID_EMAIL;
     }
 
     if (type === "signup" && !formData.firstName) {
-      newErrors.firstName = "First name is required";
+      newErrors.firstName = ErrorForm.FIRST_NAME_REQUIRED;
     }
 
     if (type === "signup" && !formData.lastName) {
-      newErrors.lastName = "Last name is required";
+      newErrors.lastName = ErrorForm.LAST_NAME_REQUIRED;
     }
 
     if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = ErrorForm.PASSWORD_TOO_SHORT;
     }
 
     setErrors(newErrors);

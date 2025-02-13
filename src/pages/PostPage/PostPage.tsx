@@ -23,7 +23,7 @@ export const PostPage: React.FC = () => {
 
   const [post, setPost] = useState<Post | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
-  const [IsLoading, setIsLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -31,7 +31,7 @@ export const PostPage: React.FC = () => {
       return;
     }
 
-    setIsLoading(true);
+    setisLoading(true);
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
@@ -40,7 +40,7 @@ export const PostPage: React.FC = () => {
         setRelatedPosts(posts.slice(0, 5));
       })
       .finally(() => {
-        setTimeout(() => setIsLoading(false), 1000);
+        setTimeout(() => setisLoading(false), 1000);
       });
   }, [id, isAuthenticated, navigate]);
 
@@ -51,7 +51,7 @@ export const PostPage: React.FC = () => {
         <Header />
         <Box p={4} maxWidth="1200px" mx="auto" display="grid" gridTemplateColumns={{ xs: "1fr", md: "2fr 1fr" }} gap={4}>
           <Card sx={{ p: 4, backgroundColor: "transparent" }} elevation={0}>
-            {IsLoading ? (
+            {isLoading ? (
               <>
                 <Skeleton variant="text" width="60%" height={40} />
                 <Skeleton variant="text" width="90%" height={20} />
@@ -87,7 +87,7 @@ export const PostPage: React.FC = () => {
               </Button>
             </Box>
             <Box display="flex" flexDirection="column" gap={2}>
-              {IsLoading
+              {isLoading
                 ? Array.from({ length: 5 }).map((_, index) => (
                     <Card key={index} elevation={0} sx={{ p: 2, display: "flex", gap: 2, backgroundColor: "transparent" }}>
                       <Skeleton variant="rectangular" width={100} height={100} sx={{ borderRadius: 2 }} />

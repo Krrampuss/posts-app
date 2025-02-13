@@ -21,7 +21,7 @@ function App() {
     <>
       <CssBaseline />
       <Provider store={store}>
-        <PersistGate IsLoading={null} persistor={persistor}>
+        <PersistGate isLoading={null} persistor={persistor}>
           <HashRouter>
             <Routes>
               <Route path="/" element={<HomePage />} />
