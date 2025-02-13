@@ -4,13 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/logo.svg";
 import { RootState } from "../../redux/store";
 import { logout } from "../../redux/slices/authSlice";
-import { useEffect } from "react";
 
 export const Header: React.FC = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-  useEffect(() => {
-    console.log("isAuthenticated changed:", isAuthenticated);
-  }, [isAuthenticated]);
 
   const dispatch = useDispatch();
   const handleLogout = () => {

@@ -35,38 +35,38 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-  
+
     if (!formData.email.includes("@")) {
       newErrors.email = "Invalid email format";
     }
-  
+
     if (type === "signup" && !formData.firstName) {
       newErrors.firstName = "First name is required";
     }
-  
+
     if (type === "signup" && !formData.lastName) {
       newErrors.lastName = "Last name is required";
     }
-  
+
     if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
     }
-  
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-  
+
     dispatch(
       login({
         email: formData.email,
@@ -74,10 +74,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         lastName: formData.lastName,
       })
     );
-  
+
     navigate("/");
   };
-  
 
   return (
     <Box
@@ -220,24 +219,37 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
               {type === "login" ? "Sign In" : "Sign Up"}
               <span style={{ fontSize: "18px" }}>→</span>
             </Button>
-            <Typography sx={{ mt: 2, textAlign: "left", fontSize: 14 }}>
-              {type === "signup"
-                ? "Already have an account?"
-                : "Don't have an account?"}
-              <Typography
-                component={RouterLink}
-                to={type === "signup" ? "/login" : "/signup"}
-                sx={{
+            <Box
+              sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}
+            >
+              <Typography sx={{ fontSize: 14 }}>
+                {type === "signup"
+                  ? "Already have an account?"
+                  : "Don't have an account?"}{" "}
+                <RouterLink
+                  to={type === "signup" ? "/login" : "/signup"}
+                  style={{
+                    color: "#04AA00",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    fontSize: 14,
+                  }}
+                >
+                  {type === "signup" ? "Sign In" : "Sign Up"}
+                </RouterLink>
+              </Typography>
+              <RouterLink
+                to="/"
+                style={{
                   color: "#04AA00",
                   fontWeight: "bold",
-                  textDecoration: "none",
-                  marginLeft: "5px",
+                  textDecoration: "underline",
                   fontSize: 14,
                 }}
               >
-                {type === "signup" ? "Sign In" : "Sign Up"}
-              </Typography>
-            </Typography>
+                Continue as Guest
+              </RouterLink>
+            </Box>
           </form>
         </Box>
         <Box

@@ -17,7 +17,7 @@ Display of similar posts
 
 Social sharing
 
-Animated loading effects (Skeleton)
+Animated IsLoading effects (Skeleton)
 
 🚀 Technologies
 

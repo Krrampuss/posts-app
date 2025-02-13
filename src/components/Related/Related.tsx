@@ -7,16 +7,16 @@ import { Post } from "../../types/Post";
 
 export const RelatedPosts: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [IsLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
         setPosts(response.data.slice(0, 5));
-        setLoading(false);
+        setIsLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => setIsLoading(false));
   }, []);
 
   return (
@@ -32,7 +32,7 @@ export const RelatedPosts: React.FC = () => {
           flexDirection: "column",
         }}
       >
-        {loading ? (
+        {IsLoading ? (
           <Box display="flex" justifyContent="center">
             <CircularProgress />
           </Box>

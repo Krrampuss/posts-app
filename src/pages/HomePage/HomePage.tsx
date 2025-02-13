@@ -8,10 +8,10 @@ import { Header } from "../../components/Header/Header";
 import { BackgroundEffects } from "../../components/BackgroundEffects/BackgroundEffects";
 
 export const HomePage: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [IsLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1500);
+    setTimeout(() => setIsLoading(false), 1500);
   }, []);
 
   return (
@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          {loading ? (
+          {IsLoading ? (
             <>
               <Skeleton variant="text" width={300} height={50} />
               <Skeleton variant="rectangular" width="80%" height={400} sx={{ borderRadius: 4 }} />
