@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { JSX } from "react";
+import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
+import { PostPage } from "./pages/PostPage/PostPage";
+import { CssBaseline } from "@mui/material";
+
+const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CssBaseline />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route
+                path="/post/:id"
+                element={
+                  <PrivateRoute>
+                    <PostPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </HashRouter>
+        </PersistGate>
+      </Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

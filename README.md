@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+[DEM0](https://krrampuss.github.io/posts-app/)
+[Figma](https://www.figma.com/design/WGFEiMy1UMUQqQA03Kgl4q/Test-Full-Stack?node-id=25-1269&t=kzxTCoHp4lCoSVrL-0)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Posts App
 
-Currently, two official plugins are available:
+This project is a platform for publishing and viewing blogs. It uses React, Material UI, Redux, React Router and other modern technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+⚡ Functionality
 
-## Expanding the ESLint configuration
+Post list view
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Detailed view of a single post
 
-- Configure the top-level `parserOptions` property like this:
+User authorization
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Display of similar posts
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Social sharing
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Animated loading effects (Skeleton)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+🚀 Technologies
+
+React – a library for building UI
+
+TypeScript – for code typing
+
+React Router – routing between pages
+
+Material UI – styling
+
+Redux Toolkit – managing global state
+
+Redux Persist – saving state in local storage
+
+Axios – for HTTP requests
+
+📦 Installation
+
+Clone the repository:
+
+git clone https://github.com/Krrampuss/posts-app.git
+
+Go to the project folder:
+
+cd blog-platform
+
+Install dependencies:
+
+npm install
+
+Start the local server:
+
+npm start
+
+🛠 Settings
+
+The fake API jsonplaceholder.typicode.com is used for demonstration.
