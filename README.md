@@ -1,4 +1,4 @@
-[DEM0](https://krrampuss.github.io/posts-app/)
+[DEMO](https://krrampuss.github.io/posts-app/)
 [Figma](https://www.figma.com/design/WGFEiMy1UMUQqQA03Kgl4q/Test-Full-Stack?node-id=25-1269&t=kzxTCoHp4lCoSVrL-0)
 
 Posts App
