@@ -35,24 +35,38 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formData.email.includes("@")) newErrors.email = "Invalid email format";
-    if (type === "signup" && !formData.firstName)
+  
+    if (!formData.email.includes("@")) {
+      newErrors.email = "Invalid email format";
+    }
+  
+    if (type === "signup" && !formData.firstName) {
       newErrors.firstName = "First name is required";
-    if (type === "signup" && !formData.lastName)
+    }
+  
+    if (type === "signup" && !formData.lastName) {
       newErrors.lastName = "Last name is required";
-    if (formData.password.length < 6)
+    }
+  
+    if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
+    }
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    
+    if (!validateForm()) {
+      return;
+    }
+  
     dispatch(
       login({
         email: formData.email,
@@ -60,8 +74,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         lastName: formData.lastName,
       })
     );
+  
     navigate("/");
   };
+  
 
   return (
     <Box
