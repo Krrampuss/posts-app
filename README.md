@@ -51,7 +51,7 @@ npm install
 
 Start the local server:
 
-npm start
+npm run dev
 
 🛠 Settings
 
